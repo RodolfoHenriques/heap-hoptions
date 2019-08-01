@@ -10,4 +10,6 @@ public interface Object {
 
     void draw(Batch batch);
 
+    void dispose();
+
 }

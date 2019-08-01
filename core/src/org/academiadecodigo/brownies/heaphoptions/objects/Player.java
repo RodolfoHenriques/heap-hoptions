@@ -4,34 +4,56 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import org.academiadecodigo.brownies.heaphoptions.Game;
 
 public class Player extends AbstractObject implements Movable {
 
-    private final float SPEED = 200;
+    private final float SPEED = 10;
 
     @Override
     public void moveUp() {
-        float newY = this.getY() + SPEED;
 
+        if (getY() >= Game.GAME_HEIGHT - rectangle.getHeight()) {
+            setY(Game.GAME_HEIGHT - rectangle.getHeight());
+            return;
+        }
+
+        float newY = this.getY() + SPEED;
         setY(newY);
     }
 
     @Override
     public void moveLeft() {
-        float newX = this.getX() - SPEED;
 
+        if (getX() < 0) {
+            setX(0);
+            return;
+        }
+
+        float newX = this.getX() - SPEED;
         setX(newX);
     }
 
     @Override
     public void moveDown() {
-        float newY = this.getY() - SPEED;
 
+        if (getY() < 0) {
+            setY(0);
+            return;
+        }
+
+        float newY = this.getY() - SPEED;
         setY(newY);
     }
 
     @Override
     public void moveRight() {
+
+        if (getX() >= Game.GAME_WIDTH - rectangle.getWidth()){
+            setX(Game.GAME_WIDTH - rectangle.getWidth());
+            return;
+        }
+
         float newX = this.getX() + SPEED;
 
         setX(newX);
@@ -40,7 +62,7 @@ public class Player extends AbstractObject implements Movable {
 
     @Override
     public void createImage() {
-        texture = new Texture(Gdx.files.internal("rectangle.png")); //TODO: Change image path
+        texture = new Texture(Gdx.files.internal("badlogic.jpg")); //TODO: Change image path
     }
 
     @Override
@@ -55,5 +77,10 @@ public class Player extends AbstractObject implements Movable {
     @Override
     public void draw(Batch batch) {
         batch.draw(texture, getX(), getY()); //TODO: Add width and height in this arguments
+    }
+
+    @Override
+    public void dispose() {
+        texture.dispose();
     }
 }
