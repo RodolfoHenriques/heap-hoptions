@@ -1,7 +1,8 @@
-package org.academiadecodigo.brownies.heaphoptions.objects;
+package org.academiadecodigo.brownies.heaphoptions.objects.abstracts;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Object;
 
 public abstract class AbstractObject implements Object {
 

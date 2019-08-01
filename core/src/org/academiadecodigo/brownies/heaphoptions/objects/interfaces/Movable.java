@@ -1,4 +1,4 @@
-package org.academiadecodigo.brownies.heaphoptions.objects;
+package org.academiadecodigo.brownies.heaphoptions.objects.interfaces;
 
 public interface Movable {
 

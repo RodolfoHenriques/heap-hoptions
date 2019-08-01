@@ -1,4 +1,4 @@
-package org.academiadecodigo.brownies.heaphoptions.objects;
+package org.academiadecodigo.brownies.heaphoptions.objects.interfaces;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 

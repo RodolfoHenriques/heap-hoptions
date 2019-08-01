@@ -1,4 +1,4 @@
-package org.academiadecodigo.brownies.heaphoptions.objects;
+package org.academiadecodigo.brownies.heaphoptions.objects.abstracts;
 
 public abstract class AbstractNPC extends AbstractObject {
 

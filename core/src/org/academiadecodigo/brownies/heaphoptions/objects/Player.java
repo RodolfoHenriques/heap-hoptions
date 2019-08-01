@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import org.academiadecodigo.brownies.heaphoptions.Game;
+import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractObject;
+import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Movable;
 
 public class Player extends AbstractObject implements Movable {
 
