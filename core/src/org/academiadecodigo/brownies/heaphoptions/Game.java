@@ -43,7 +43,10 @@ public class Game extends ApplicationAdapter {
 
         camera.position.set(player.getX(), player.getY(), 0);
         camera.update();
-        batch.setProjectionMatrix(camera.combined);
+
+        if (player.getX() >= 1366/2 - player.getWidth() / 2) {
+            batch.setProjectionMatrix(camera.combined);
+        }
 
         batch.begin();
         batch.draw(bg, 0, 0);

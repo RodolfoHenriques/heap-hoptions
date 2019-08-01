@@ -43,4 +43,12 @@ public abstract class AbstractObject implements Object {
     public void setY(float y) {
         rectangle.y = y;
     }
+
+    public float getWidth() {
+        return texture.getWidth();
+    }
+
+    public float getHeight() {
+        return texture.getHeight();
+    }
 }
