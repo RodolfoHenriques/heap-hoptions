@@ -72,4 +72,8 @@ public abstract class AbstractObject implements Object {
     public void setBatch(Batch batch) {
         this.batch = batch;
     }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
 }

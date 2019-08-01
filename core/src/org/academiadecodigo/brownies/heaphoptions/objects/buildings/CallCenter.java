@@ -17,10 +17,10 @@ public class CallCenter extends AbstractBuilding {
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 800;
-        rectangle.y = 500;
-        rectangle.width = 200;
-        rectangle.height = 200;
+        rectangle.x = 750;
+        rectangle.y = 380;
+        rectangle.width = 64;
+        rectangle.height = 100;
     }
 
 
@@ -36,6 +36,6 @@ public class CallCenter extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64,64);
+        batch.draw(texture, getX(), getY(), 64,100);
     }
 }

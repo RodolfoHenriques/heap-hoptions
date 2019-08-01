@@ -72,17 +72,26 @@ public class Game extends ApplicationAdapter {
     private void verifyInput() {
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            player.moveUp();
+            if (!verifyCollision()) {
+                player.moveUp();
+            }
+            else {
+                System.out.println("FODASSE");
+            }
         }
+
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             player.moveLeft();
         }
+
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             player.moveDown();
         }
+
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.moveRight();
         }
+        verifyCollision();
     }
 
     private void createObjects() {
@@ -95,9 +104,17 @@ public class Game extends ApplicationAdapter {
         callCenter.create();
     }
 
-    private void drawObjects(){
-        player.draw(batch);
+    private void drawObjects() {
         callCenter.draw(batch);
+        player.draw(batch);
+    }
+
+    private boolean verifyCollision() {
+
+        if (player.getRectangle().overlaps(callCenter.getRectangle())) {
+            return true;
+        }
+        return false;
     }
 
 }
