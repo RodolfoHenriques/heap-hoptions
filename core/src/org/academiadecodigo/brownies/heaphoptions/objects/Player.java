@@ -2,6 +2,7 @@ package org.academiadecodigo.brownies.heaphoptions.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import org.academiadecodigo.brownies.heaphoptions.Game;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractObject;
@@ -65,7 +66,8 @@ public class Player extends AbstractObject implements Movable {
 
     @Override
     public void createImage() {
-        texture = new Texture(Gdx.files.internal("badlogic.jpg")); //TODO: Change image path
+        texture = new Texture(Gdx.files.internal("Idle (1).png")); //TODO: Change image path
+
     }
 
     @Override
@@ -73,8 +75,13 @@ public class Player extends AbstractObject implements Movable {
         rectangle = new Rectangle();
         rectangle.x = 800 / 2 - 64 / 2;
         rectangle.y = 20;
-        rectangle.width = 64;
-        rectangle.height = 64;
+        rectangle.width = 16;
+        rectangle.height = 16;
+    }
+
+    @Override
+    public void draw(Batch batch) {
+        batch.draw(texture, getX(), getY(), 86,86);
     }
 
     public int getInfluence() {
