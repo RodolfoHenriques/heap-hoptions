@@ -21,5 +21,4 @@ public class CoffeeShop extends AbstractBuilding {
         rectangle.height = 64;
     }
 
-
 }

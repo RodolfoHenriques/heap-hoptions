@@ -10,8 +10,20 @@ public abstract class AbstractObject implements Object {
     protected Texture texture;
     protected Rectangle rectangle;
 
+    protected Batch batch;
+
     protected String name;
     protected String description;
+
+    @Override
+    public void dispose() {
+        texture.dispose();
+    }
+
+    @Override
+    public void draw(Batch batch) {
+        batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+    }
 
     public String getName() {
         return name;
@@ -53,13 +65,11 @@ public abstract class AbstractObject implements Object {
         return texture.getHeight();
     }
 
-    @Override
-    public void dispose() {
-        texture.dispose();
+    public Batch getBatch() {
+        return batch;
     }
 
-    @Override
-    public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+    public void setBatch(Batch batch) {
+        this.batch = batch;
     }
 }

@@ -10,6 +10,13 @@ public abstract class AbstractBuilding extends AbstractObject implements Buildin
 
     private boolean open;
 
+    @Override
+    public void showStories() {
+        for (Menu menu : menus) {
+            menu.show();
+        }
+    }
+
     public boolean isOpen() {
         return open;
     }
