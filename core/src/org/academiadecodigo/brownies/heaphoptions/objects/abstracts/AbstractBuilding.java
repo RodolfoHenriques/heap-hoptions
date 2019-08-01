@@ -1,6 +1,7 @@
 package org.academiadecodigo.brownies.heaphoptions.objects.abstracts;
 
 import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
+import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Building;
 
 import java.util.LinkedList;
 
