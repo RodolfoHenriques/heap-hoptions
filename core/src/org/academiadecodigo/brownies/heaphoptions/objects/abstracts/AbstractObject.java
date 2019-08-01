@@ -1,6 +1,7 @@
 package org.academiadecodigo.brownies.heaphoptions.objects.abstracts;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Object;
 
@@ -9,8 +10,20 @@ public abstract class AbstractObject implements Object {
     protected Texture texture;
     protected Rectangle rectangle;
 
+    protected Batch batch;
+
     protected String name;
     protected String description;
+
+    @Override
+    public void dispose() {
+        texture.dispose();
+    }
+
+    @Override
+    public void draw(Batch batch) {
+        batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+    }
 
     public String getName() {
         return name;
@@ -50,5 +63,13 @@ public abstract class AbstractObject implements Object {
 
     public float getHeight() {
         return texture.getHeight();
+    }
+
+    public Batch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(Batch batch) {
+        this.batch = batch;
     }
 }
