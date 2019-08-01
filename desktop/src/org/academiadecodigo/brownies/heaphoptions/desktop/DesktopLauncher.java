@@ -7,6 +7,9 @@ import org.academiadecodigo.brownies.heaphoptions.Game;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.title = "Heap Hoptions";
+		config.width = 1366;
+		config.height = 768;
 		new LwjglApplication(new Game(), config);
 	}
 }
