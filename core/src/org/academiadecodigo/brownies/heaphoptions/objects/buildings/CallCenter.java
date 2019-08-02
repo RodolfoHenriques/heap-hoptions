@@ -8,6 +8,7 @@ import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 
 public class CallCenter extends AbstractBuilding {
+
     @Override
     public void createImage() {
         texture = new Texture(Gdx.files.internal("rect.png"));

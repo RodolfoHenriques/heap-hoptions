@@ -9,7 +9,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import org.academiadecodigo.brownies.heaphoptions.objects.Player;
+import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
+import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractObject;
 import org.academiadecodigo.brownies.heaphoptions.objects.buildings.CallCenter;
+import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Building;
+
+import java.util.LinkedList;
 
 public class Game extends ApplicationAdapter {
 
@@ -25,7 +30,9 @@ public class Game extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Texture bg;
 
-    private CallCenter callCenter;
+    private LinkedList<AbstractBuilding> buildings;
+
+    private AbstractBuilding currentBuilding;
 
     @Override
     public void create() {
@@ -33,6 +40,7 @@ public class Game extends ApplicationAdapter {
 
         bg = new Texture(Gdx.files.internal("background.png"));
 
+        buildings = ObjectFactory.createBuildings();
         createObjects();
 
         camera = new OrthographicCamera();
@@ -66,32 +74,39 @@ public class Game extends ApplicationAdapter {
         batch.dispose();
         player.dispose();
         bg.dispose();
-        callCenter.dispose();
+        for (AbstractBuilding building : buildings) {
+            building.dispose();
+        }
     }
 
     private void verifyInput() {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            if (!verifyCollision()) {
+        verifyCollision();
+
+        if (player.canWalk()) {
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
                 player.moveUp();
             }
-            else {
-                System.out.println("FODASSE");
+
+            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                player.moveLeft();
             }
+
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                player.moveDown();
+            }
+
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                player.moveRight();
+            }
+            return;
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            player.moveLeft();
+        if (currentBuilding != null && currentBuilding.isOpen()){
+            currentBuilding.showStories();
+            player.setCanWalk(true);
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            player.moveDown();
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            player.moveRight();
-        }
-        verifyCollision();
     }
 
     private void createObjects() {
@@ -99,22 +114,29 @@ public class Game extends ApplicationAdapter {
         player.createImage();
         player.create();
 
-        callCenter = new CallCenter();
-        callCenter.createImage();
-        callCenter.create();
+        for (AbstractBuilding building : buildings) {
+            building.createImage();
+            building.create();
+        }
+
     }
 
     private void drawObjects() {
-        callCenter.draw(batch);
+        for (AbstractBuilding building : buildings) {
+            building.draw(batch);
+        }
         player.draw(batch);
     }
 
-    private boolean verifyCollision() {
+    private void verifyCollision() {
 
-        if (player.getRectangle().overlaps(callCenter.getRectangle())) {
-            return true;
+        for (AbstractBuilding building : buildings) {
+            if (player.getRectangle().overlaps(building.getRectangle())) {
+                player.setCanWalk(false);
+                currentBuilding = building;
+            }
         }
-        return false;
+        currentBuilding = null;
     }
 
 }

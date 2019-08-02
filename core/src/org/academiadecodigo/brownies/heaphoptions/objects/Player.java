@@ -12,6 +12,7 @@ public class Player extends AbstractObject implements Movable {
 
     private final float SPEED = 10;
     private int influence;
+    private boolean walk = true;
 
 
     @Override
@@ -90,5 +91,13 @@ public class Player extends AbstractObject implements Movable {
 
     public void setInfluence(int influence) {
         this.influence = influence;
+    }
+
+    public boolean canWalk() {
+        return walk;
+    }
+
+    public void setCanWalk(boolean walk) {
+        this.walk = walk;
     }
 }
