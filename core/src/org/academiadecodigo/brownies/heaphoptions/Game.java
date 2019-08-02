@@ -3,6 +3,7 @@ package org.academiadecodigo.brownies.heaphoptions;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -34,6 +35,8 @@ public class Game extends ApplicationAdapter {
 
     private AbstractBuilding currentBuilding;
 
+    private Music music;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -45,6 +48,13 @@ public class Game extends ApplicationAdapter {
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1366, 768);
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/game-song.mp3"));
+
+        music.setLooping(true);
+
+        music.play();
+
 
     }
 

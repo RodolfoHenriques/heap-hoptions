@@ -58,6 +58,7 @@ public class University extends AbstractBuilding {
 
     }
 
+
     public void setCallCenter(CallCenter callCenter) {
         this.callCenter = callCenter;
     }
