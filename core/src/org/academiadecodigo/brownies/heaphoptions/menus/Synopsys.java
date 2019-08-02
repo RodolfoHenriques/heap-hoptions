@@ -5,16 +5,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import org.academiadecodigo.brownies.heaphoptions.Game;
 
-public class MainMenu extends AbstractMenu {
+public class Synopsys extends AbstractMenu {
 
     @Override
     public void updatePlayer(int influence) {
-        player.setInfluence(player.getInfluence() + influence);
+
     }
 
     @Override
     public void createImage() {
-        texture = new Texture(Gdx.files.internal("main_menu.png"));
+
+        texture = new Texture(Gdx.files.internal("synopsys.png"));
+
     }
 
     @Override

@@ -36,4 +36,5 @@ public abstract class AbstractBuilding extends AbstractObject implements Buildin
     public void setMenu(LinkedList<Menu> menus) {
         this.menus = menus;
     }
+
 }
