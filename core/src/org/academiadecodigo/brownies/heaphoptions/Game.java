@@ -232,6 +232,7 @@ public class Game extends ApplicationAdapter {
         player.create();
 
         for (AbstractBuilding building : buildings) {
+            building.setBatch(batch);
             building.createImage();
             building.create();
         }
@@ -263,7 +264,6 @@ public class Game extends ApplicationAdapter {
                     player.setCanWalk(false);
                     currentBuilding = building;
                     currentBuilding.setBatch(batch);
-
                     return;
                 }
             }

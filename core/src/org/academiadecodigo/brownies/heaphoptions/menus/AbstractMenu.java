@@ -9,8 +9,8 @@ public abstract class AbstractMenu extends AbstractObject implements Menu {
 
     @Override
     public void show() {
-        createImage();
-        create();
+        //createImage();
+       // create();
         draw(batch);
     }
 

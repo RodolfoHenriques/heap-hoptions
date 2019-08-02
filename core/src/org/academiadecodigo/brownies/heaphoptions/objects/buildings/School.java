@@ -23,10 +23,10 @@ public class School extends AbstractBuilding {
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 90;
-        rectangle.y = 210;
-        rectangle.width = 64;
-        rectangle.height = 100;
+        rectangle.x = 110;
+        rectangle.y = 805;
+        rectangle.width = 182;
+        rectangle.height = 14;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class School extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64, 100);
+        batch.draw(texture, getX(), getY(), 182, 14);
     }
 
     private void changeStatesDisco(){

@@ -20,10 +20,10 @@ public class CoffeeShop extends AbstractBuilding {
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 80;
-        rectangle.y = 20;
-        rectangle.width = 64;
-        rectangle.height = 100;
+        rectangle.x = 1357;
+        rectangle.y = 846;
+        rectangle.width = 14;
+        rectangle.height = 19;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CoffeeShop extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64, 100);
+        batch.draw(texture, getX(), getY(), 14, 19);
     }
 
     public boolean isAvailable() {

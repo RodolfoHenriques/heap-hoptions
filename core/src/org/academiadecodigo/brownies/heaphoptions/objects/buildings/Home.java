@@ -5,34 +5,69 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
+import org.academiadecodigo.brownies.heaphoptions.options.CampingMenu;
+import org.academiadecodigo.brownies.heaphoptions.options.DiscoMenu;
 import org.academiadecodigo.brownies.heaphoptions.options.SchoolMenu;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Home extends AbstractBuilding {
 
     private School school;
-    SchoolMenu schoolMenu;
+    private Menu current;
+    private Map<Class<? extends Menu>, Menu> menus = new HashMap<>();
 
     @Override
     public void createImage() {
         texture = new Texture(Gdx.files.internal("rect.png"));
+    }
 
+
+    @Override
+    public void setBatch(Batch batch) {
+        super.setBatch(batch);
+        current = menus.get(SchoolMenu.class);
     }
 
     @Override
     public void create() {
+
         rectangle = new Rectangle();
-        rectangle.x = 1000;
-        rectangle.y = 590;
-        rectangle.width = 64;
-        rectangle.height = 100;
+        rectangle.x = 230;
+        rectangle.y = 238;
+        rectangle.width = 31;
+        rectangle.height = 20;
+
+        SchoolMenu schoolMenu = new SchoolMenu();
+        schoolMenu.createImage();
+        schoolMenu.create();
+        schoolMenu.setBatch(batch);
+
+        menus.put(SchoolMenu.class, schoolMenu);
+
+        CampingMenu campingMenu = new CampingMenu();
+        campingMenu.setBatch(batch);
+        campingMenu.createImage();
+        campingMenu.create();
+
+        menus.put(CampingMenu.class, campingMenu);
+
+        DiscoMenu discoMenu = new DiscoMenu();
+        discoMenu.setBatch(batch);
+        discoMenu.createImage();
+        discoMenu.create();
+
+        menus.put(DiscoMenu.class, discoMenu);
+
     }
 
     @Override
     public void showStories() {
 
-        schoolMenu = new SchoolMenu();
-        schoolMenu.setBatch(batch);
+
 
         /*while (!(Gdx.input.isKeyPressed(Input.Keys.NUM_1)) && (!(Gdx.input.isKeyPressed(Input.Keys.NUM_2)))) {
 
@@ -47,20 +82,20 @@ public class Home extends AbstractBuilding {
     public void handle(int key) {
         switch (key) {
             case Input.Keys.NUM_1:
-                System.out.println("1");
+                current = menus.get(CampingMenu.class);
                 return;
             case Input.Keys.NUM_2:
-                System.out.println("2");
+                current = menus.get(DiscoMenu.class);
         }
     }
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64, 100);
-
-        if (schoolMenu != null) {
-            schoolMenu.show();
+        batch.draw(texture, getX(), getY(), 31, 20);
+        if (current != null) {
+            current.show();
         }
+
     }
 
     private void changeStates() {

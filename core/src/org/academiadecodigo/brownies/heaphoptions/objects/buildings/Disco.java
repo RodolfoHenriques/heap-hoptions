@@ -20,10 +20,10 @@ public class Disco extends AbstractBuilding {
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 800;
-        rectangle.y = 200;
-        rectangle.width = 64;
-        rectangle.height = 100;
+        rectangle.x = 173;
+        rectangle.y = 624;
+        rectangle.width = 12;
+        rectangle.height = 27;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Disco extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64, 100);
+        batch.draw(texture, getX(), getY(), 12, 27);
     }
 
     private void changeStates() {

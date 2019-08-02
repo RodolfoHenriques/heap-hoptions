@@ -14,21 +14,7 @@ public class SchoolMenu extends AbstractMenu {
     @Override
     public void updatePlayer(int influence) {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)) {
-            campingMenu = new CampingMenu();
-            campingMenu.setBatch(batch);
-            campingMenu.createImage();
-            campingMenu.create();
-            campingMenu.draw(batch);
-        }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)) {
-            discoMenu = new DiscoMenu();
-            discoMenu.setBatch(batch);
-            discoMenu.createImage();
-            discoMenu.create();
-            discoMenu.draw(batch);
-        }
     }
 
     @Override

@@ -21,10 +21,10 @@ public class LostCubicle extends AbstractBuilding {
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 1024;
-        rectangle.y = 200;
-        rectangle.width = 64;
-        rectangle.height = 100;
+        rectangle.x = 1590;
+        rectangle.y = 406;
+        rectangle.width = 444;
+        rectangle.height = 145;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LostCubicle extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64, 100);
+        batch.draw(texture, getX(), getY(), 444, 145);
     }
 
     public void setLost(Lost lost) {

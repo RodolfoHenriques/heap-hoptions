@@ -20,10 +20,10 @@ public class CallCenter extends AbstractBuilding {
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 750;
-        rectangle.y = 380;
-        rectangle.width = 64;
-        rectangle.height = 100;
+        rectangle.x = 1691;
+        rectangle.y = 911;
+        rectangle.width = 16;
+        rectangle.height = 22;
     }
 
 

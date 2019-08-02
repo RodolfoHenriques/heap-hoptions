@@ -21,10 +21,10 @@ public class Train extends AbstractBuilding {
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 150;
-        rectangle.y = 700;
-        rectangle.width = 64;
-        rectangle.height = 100;
+        rectangle.x = 1788;
+        rectangle.y = 79;
+        rectangle.width = 100;
+        rectangle.height = 61;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Train extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64, 100);
+        batch.draw(texture, getX(), getY(), 100, 61);
     }
 
     public void setWin(Win win) {

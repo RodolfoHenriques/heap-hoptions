@@ -22,10 +22,10 @@ public class University extends AbstractBuilding {
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 80;
-        rectangle.y = 200;
-        rectangle.width = 64;
-        rectangle.height = 100;
+        rectangle.x = 515;
+        rectangle.y = 893;
+        rectangle.width = 11;
+        rectangle.height = 11;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class University extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64, 100);
+        batch.draw(texture, getX(), getY(), 11, 11);
     }
 
     private void changeStates() {
@@ -67,7 +67,8 @@ public class University extends AbstractBuilding {
         this.coffeeShop = coffeeShop;
     }
 
-    public void setWin(Win win) {
+    public void setWin(Win win)
+    {
         this.win = win;
     }
 }
