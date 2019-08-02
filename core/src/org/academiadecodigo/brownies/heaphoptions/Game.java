@@ -1,6 +1,5 @@
 package org.academiadecodigo.brownies.heaphoptions;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,7 +10,7 @@ import com.badlogic.gdx.math.MathUtils;
 import org.academiadecodigo.brownies.heaphoptions.objects.Player;
 import org.academiadecodigo.brownies.heaphoptions.objects.buildings.CallCenter;
 
-public class Game extends ApplicationAdapter {
+public class Game extends com.badlogic.gdx.Game {
 
     public static final int GAME_WIDTH = 2239;
     public static final int GAME_HEIGHT = 2235;
