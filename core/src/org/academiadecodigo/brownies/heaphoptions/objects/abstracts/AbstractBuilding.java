@@ -1,5 +1,7 @@
 package org.academiadecodigo.brownies.heaphoptions.objects.abstracts;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
 import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Building;
 
@@ -16,6 +18,11 @@ public abstract class AbstractBuilding extends AbstractObject implements Buildin
         for (Menu menu : menus) {
             menu.show();
         }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
+
+        }
+
     }
 
     public boolean isOpen() {
