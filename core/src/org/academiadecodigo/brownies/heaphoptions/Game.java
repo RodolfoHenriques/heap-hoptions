@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import org.academiadecodigo.brownies.heaphoptions.menus.MainMenu;
 import org.academiadecodigo.brownies.heaphoptions.objects.Player;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractObject;
@@ -19,6 +20,13 @@ import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Building;
 import java.util.LinkedList;
 
 public class Game extends ApplicationAdapter {
+
+    enum State {
+        MENU,
+        GAME,
+        WIN,
+        LOSE
+    }
 
     public static final int BG_WIDTH = 2239;
     public static final int BG_HEIGHT = 2235;
@@ -37,23 +45,34 @@ public class Game extends ApplicationAdapter {
 
     private Music music;
 
+    private State state = State.MENU;
+
+    private MainMenu mainMenu;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
 
-        bg = new Texture(Gdx.files.internal("background.png"));
 
-        buildings = objectFactory.createBuildings();
-        createObjects();
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1366, 768);
+            bg = new Texture(Gdx.files.internal("background.png"));
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/game-song.mp3"));
+            buildings = objectFactory.createBuildings();
+            createObjects();
 
-        music.setLooping(true);
+            camera = new OrthographicCamera();
+            camera.setToOrtho(false, 1366, 768);
 
-        music.play();
+            music = Gdx.audio.newMusic(Gdx.files.internal("music/game-song.mp3"));
+
+            music.setLooping(true);
+
+            music.play();
+
+        mainMenu = new MainMenu();
+        mainMenu.createImage();
+        mainMenu.create();
+        mainMenu.setBatch(batch);
 
 
     }
@@ -63,20 +82,36 @@ public class Game extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
+        if (state != State.MENU) {
+            camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
 
-        camera.position.x = MathUtils.clamp(camera.position.x, SCREEN_WIDTH / 2f, BG_WIDTH - SCREEN_WIDTH / 2f);
-        camera.position.y = MathUtils.clamp(camera.position.y, SCREEN_HEIGHT / 2f, BG_HEIGHT - SCREEN_HEIGHT / 2f);
+            camera.position.x = MathUtils.clamp(camera.position.x, SCREEN_WIDTH / 2f, BG_WIDTH - SCREEN_WIDTH / 2f);
+            camera.position.y = MathUtils.clamp(camera.position.y, SCREEN_HEIGHT / 2f, BG_HEIGHT - SCREEN_HEIGHT / 2f);
 
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
+            camera.update();
+            batch.setProjectionMatrix(camera.combined);
+
+            batch.begin();
+            batch.draw(bg, 0, 0);
+            drawObjects();
+            batch.end();
+
+            verifyInput();
+            return;
+        }
 
         batch.begin();
-        batch.draw(bg, 0, 0);
-        drawObjects();
+        mainMenu.show();
         batch.end();
 
-        verifyInput();
+        chooseMenuOption();
+
+    }
+
+    private void chooseMenuOption() {
+        if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
+            state = State.GAME;
+        }
     }
 
     @Override
@@ -86,6 +121,9 @@ public class Game extends ApplicationAdapter {
         bg.dispose();
         for (AbstractBuilding building : buildings) {
             building.dispose();
+        }
+        if (state != State.MENU){
+            mainMenu.dispose();
         }
     }
 
@@ -140,6 +178,7 @@ public class Game extends ApplicationAdapter {
     }
 
     private void drawObjects() {
+
         for (AbstractBuilding building : buildings) {
             building.draw(batch);
         }

@@ -3,6 +3,7 @@ package org.academiadecodigo.brownies.heaphoptions.menus;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import org.academiadecodigo.brownies.heaphoptions.Game;
 
 public class MainMenu extends AbstractMenu {
 
@@ -13,15 +14,15 @@ public class MainMenu extends AbstractMenu {
 
     @Override
     public void createImage() {
-        texture = new Texture(Gdx.files.internal("main_menu.jpg")); //TODO: Change image path
+        texture = new Texture(Gdx.files.internal("main_menu.png"));
     }
 
     @Override
     public void create() {
         rectangle = new Rectangle();
-        rectangle.x = 800 / 2 - 64 / 2;
-        rectangle.y = 20;
-        rectangle.width = 64;
-        rectangle.height = 64;
+        rectangle.x = 0;
+        rectangle.y = 0;
+        rectangle.width = Game.SCREEN_WIDTH;
+        rectangle.height = Game.SCREEN_HEIGHT;
     }
 }
