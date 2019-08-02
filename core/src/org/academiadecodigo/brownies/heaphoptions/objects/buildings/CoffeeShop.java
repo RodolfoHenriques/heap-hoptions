@@ -8,6 +8,9 @@ import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 
 public class CoffeeShop extends AbstractBuilding {
+
+    private boolean available;
+
     @Override
     public void createImage() {
         texture = new Texture(Gdx.files.internal("rect.png"));
@@ -38,4 +41,7 @@ public class CoffeeShop extends AbstractBuilding {
         batch.draw(texture, getX(), getY(), 64, 100);
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
 }

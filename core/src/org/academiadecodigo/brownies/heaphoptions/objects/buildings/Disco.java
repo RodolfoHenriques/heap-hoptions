@@ -9,6 +9,8 @@ import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuil
 
 public class Disco extends AbstractBuilding {
 
+    private School school;
+
     @Override
     public void createImage() {
         texture = new Texture(Gdx.files.internal("rect.png"));
@@ -32,6 +34,8 @@ public class Disco extends AbstractBuilding {
             menu.show();
 
         }
+
+        changeStates();
     }
 
     @Override
@@ -39,4 +43,12 @@ public class Disco extends AbstractBuilding {
         batch.draw(texture, getX(), getY(), 64, 100);
     }
 
+    private void changeStates() {
+        this.setOpen(false);
+        school.setOpen(true);
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
 }

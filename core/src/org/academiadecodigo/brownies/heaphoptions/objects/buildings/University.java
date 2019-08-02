@@ -5,9 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
+import org.academiadecodigo.brownies.heaphoptions.menus.Win;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 
 public class University extends AbstractBuilding {
+
+    private CallCenter callCenter;
+    private CoffeeShop coffeeShop;
+    private Win win;
 
     @Override
     public void createImage() {
@@ -31,6 +36,9 @@ public class University extends AbstractBuilding {
             menu.show();
 
         }
+        //TODO ATTENTION HERE - WINNING SCENARIO POSSIBILITY
+        changeStates();
+        win.show();
     }
 
     @Override
@@ -38,4 +46,27 @@ public class University extends AbstractBuilding {
         batch.draw(texture, getX(), getY(), 64, 100);
     }
 
+    private void changeStates() {
+        this.setOpen(false);
+
+        if (callCenter.isAvailable()) {
+            callCenter.setOpen(true);
+        }
+        if (coffeeShop.isAvailable()) {
+            coffeeShop.setOpen(true);
+        }
+
+    }
+
+    public void setCallCenter(CallCenter callCenter) {
+        this.callCenter = callCenter;
+    }
+
+    public void setCoffeeShop(CoffeeShop coffeeShop) {
+        this.coffeeShop = coffeeShop;
+    }
+
+    public void setWin(Win win) {
+        this.win = win;
+    }
 }

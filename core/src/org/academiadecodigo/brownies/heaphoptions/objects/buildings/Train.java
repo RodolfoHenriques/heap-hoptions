@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
+import org.academiadecodigo.brownies.heaphoptions.menus.Win;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 
 public class Train extends AbstractBuilding {
+
+    private Win win;
 
     @Override
     public void createImage() {
@@ -32,6 +35,8 @@ public class Train extends AbstractBuilding {
             menu.show();
 
         }
+
+        win.show();
     }
 
     @Override
@@ -39,4 +44,7 @@ public class Train extends AbstractBuilding {
         batch.draw(texture, getX(), getY(), 64, 100);
     }
 
+    public void setWin(Win win) {
+        this.win = win;
+    }
 }

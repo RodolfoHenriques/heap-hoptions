@@ -21,6 +21,8 @@ public class ObjectFactory {
         Train train = new Train();
         University university = new University();
 
+        home.setOpen(true);
+
         list.add(callCenter);
         list.add(coffeeShop);
         list.add(disco);

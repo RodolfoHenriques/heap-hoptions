@@ -8,6 +8,9 @@ import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 
 public class Home extends AbstractBuilding {
+
+    private School school;
+
     @Override
     public void createImage() {
         texture = new Texture(Gdx.files.internal("rect.png"));
@@ -31,10 +34,22 @@ public class Home extends AbstractBuilding {
             menu.show();
 
         }
+
+        changeStates();
     }
 
     @Override
     public void draw(Batch batch) {
         batch.draw(texture, getX(), getY(), 64, 100);
+    }
+
+    private void changeStates(){
+        this.setOpen(false);
+        school.setOpen(true);
+
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 }

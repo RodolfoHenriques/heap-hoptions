@@ -4,10 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import org.academiadecodigo.brownies.heaphoptions.menus.Lost;
 import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 
 public class LostCubicle extends AbstractBuilding {
+
+    private Lost lost;
 
     @Override
     public void createImage() {
@@ -32,10 +35,17 @@ public class LostCubicle extends AbstractBuilding {
             menu.show();
 
         }
+
+        lost.show();
+
     }
 
     @Override
     public void draw(Batch batch) {
         batch.draw(texture, getX(), getY(), 64, 100);
+    }
+
+    public void setLost(Lost lost) {
+        this.lost = lost;
     }
 }

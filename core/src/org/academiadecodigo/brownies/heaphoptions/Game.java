@@ -12,14 +12,13 @@ import org.academiadecodigo.brownies.heaphoptions.objects.Player;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractObject;
 import org.academiadecodigo.brownies.heaphoptions.objects.buildings.CallCenter;
+import org.academiadecodigo.brownies.heaphoptions.objects.buildings.CoffeeShop;
 import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Building;
 
 import java.util.LinkedList;
 
 public class Game extends ApplicationAdapter {
 
-    public static final int GAME_WIDTH = 2239;
-    public static final int GAME_HEIGHT = 2235;
     public static final int BG_WIDTH = 2239;
     public static final int BG_HEIGHT = 2235;
     public static final int SCREEN_WIDTH = 1366;
@@ -102,8 +101,16 @@ public class Game extends ApplicationAdapter {
             return;
         }
 
-        if (currentBuilding != null && currentBuilding.isOpen()){
+        if (currentBuilding != null && currentBuilding.isOpen()) {
             currentBuilding.showStories();
+
+            if (currentBuilding instanceof CoffeeShop) {
+                buildings.remove(currentBuilding);
+            }
+            if (currentBuilding instanceof CallCenter) {
+                buildings.remove(currentBuilding);
+            }
+
             player.setCanWalk(true);
         }
 
@@ -132,8 +139,10 @@ public class Game extends ApplicationAdapter {
 
         for (AbstractBuilding building : buildings) {
             if (player.getRectangle().overlaps(building.getRectangle())) {
-                player.setCanWalk(false);
-                currentBuilding = building;
+                if (building.isOpen()) {
+                    player.setCanWalk(false);
+                    currentBuilding = building;
+                }
             }
         }
         currentBuilding = null;
