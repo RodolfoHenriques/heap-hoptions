@@ -18,6 +18,7 @@ public class Player extends AbstractObject implements Movable {
     @Override
     public void moveUp() {
 
+
         if (getY() >= Game.BG_WIDTH - rectangle.getHeight()) {
             setY(Game.BG_HEIGHT - rectangle.getHeight());
             return;
@@ -29,6 +30,7 @@ public class Player extends AbstractObject implements Movable {
 
     @Override
     public void moveLeft() {
+
 
         if (getX() < 0) {
             setX(0);
@@ -42,6 +44,7 @@ public class Player extends AbstractObject implements Movable {
     @Override
     public void moveDown() {
 
+
         if (getY() < 0) {
             setY(0);
             return;
@@ -53,6 +56,7 @@ public class Player extends AbstractObject implements Movable {
 
     @Override
     public void moveRight() {
+
 
         if (getX() >= Game.BG_WIDTH - rectangle.getWidth()) {
             setX(Game.BG_HEIGHT - rectangle.getWidth());
@@ -74,8 +78,8 @@ public class Player extends AbstractObject implements Movable {
     @Override
     public void create() { //TODO: Change this too
         rectangle = new Rectangle();
-        rectangle.x = 800 / 2 - 64 / 2;
-        rectangle.y = 20;
+        rectangle.x = 205;
+        rectangle.y = 140;
         rectangle.width = 16;
         rectangle.height = 16;
     }
@@ -100,4 +104,7 @@ public class Player extends AbstractObject implements Movable {
     public void setCanWalk(boolean walk) {
         this.walk = walk;
     }
+
+
+
 }

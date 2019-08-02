@@ -7,7 +7,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import org.academiadecodigo.brownies.heaphoptions.objects.Player;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractObject;
@@ -19,8 +26,8 @@ import java.util.LinkedList;
 
 public class Game extends ApplicationAdapter {
 
-    public static final int BG_WIDTH = 2239;
-    public static final int BG_HEIGHT = 2235;
+    public static final int BG_WIDTH = 2064;
+    public static final int BG_HEIGHT = 1152;
     public static final int SCREEN_WIDTH = 1366;
     public static final int SCREEN_HEIGHT = 768;
 
@@ -34,6 +41,12 @@ public class Game extends ApplicationAdapter {
 
     private AbstractBuilding currentBuilding;
 
+    //Collisions
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private MapLayer collision;
+    private MapObjects objects;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -46,6 +59,13 @@ public class Game extends ApplicationAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1366, 768);
 
+        //For Collisions
+        TmxMapLoader loader = new TmxMapLoader();
+        map = loader.load("collisions/collisions.tmx");
+        collision = map.getLayers().get(0);
+        objects = collision.getObjects();
+        renderer = new OrthogonalTiledMapRenderer(map);
+
     }
 
     @Override
@@ -57,9 +77,11 @@ public class Game extends ApplicationAdapter {
 
         camera.position.x = MathUtils.clamp(camera.position.x, SCREEN_WIDTH / 2f, BG_WIDTH - SCREEN_WIDTH / 2f);
         camera.position.y = MathUtils.clamp(camera.position.y, SCREEN_HEIGHT / 2f, BG_HEIGHT - SCREEN_HEIGHT / 2f);
-
         camera.update();
         batch.setProjectionMatrix(camera.combined);
+
+        renderer.setView(camera);
+        renderer.render();
 
         batch.begin();
         batch.draw(bg, 0, 0);
@@ -67,6 +89,10 @@ public class Game extends ApplicationAdapter {
         batch.end();
 
         verifyInput();
+
+
+
+
     }
 
     @Override
@@ -137,6 +163,16 @@ public class Game extends ApplicationAdapter {
     }
 
     private void verifyCollision() {
+
+        for (RectangleMapObject rectangleMapObject : objects.getByType(RectangleMapObject.class)) {
+            Rectangle rectangle = rectangleMapObject.getRectangle();
+
+            if(player.getRectangle().overlaps(rectangle)){
+                System.out.println("Bateu");
+            }
+
+        }
+
 
         for (AbstractBuilding building : buildings) {
             if (player.getRectangle().overlaps(building.getRectangle())) {
