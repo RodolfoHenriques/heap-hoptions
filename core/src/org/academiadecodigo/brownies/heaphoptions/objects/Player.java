@@ -12,13 +12,14 @@ public class Player extends AbstractObject implements Movable {
 
     private final float SPEED = 10;
     private int influence;
+    private boolean walk = true;
 
 
     @Override
     public void moveUp() {
 
-        if (getY() >= Game.GAME_HEIGHT - rectangle.getHeight()) {
-            setY(Game.GAME_HEIGHT - rectangle.getHeight());
+        if (getY() >= Game.BG_WIDTH - rectangle.getHeight()) {
+            setY(Game.BG_HEIGHT - rectangle.getHeight());
             return;
         }
 
@@ -53,8 +54,8 @@ public class Player extends AbstractObject implements Movable {
     @Override
     public void moveRight() {
 
-        if (getX() >= Game.GAME_WIDTH - rectangle.getWidth()) {
-            setX(Game.GAME_WIDTH - rectangle.getWidth());
+        if (getX() >= Game.BG_WIDTH - rectangle.getWidth()) {
+            setX(Game.BG_HEIGHT - rectangle.getWidth());
             return;
         }
 
@@ -81,7 +82,7 @@ public class Player extends AbstractObject implements Movable {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 86,86);
+        batch.draw(texture, getX(), getY(), 86, 86);
     }
 
     public int getInfluence() {
@@ -90,5 +91,13 @@ public class Player extends AbstractObject implements Movable {
 
     public void setInfluence(int influence) {
         this.influence = influence;
+    }
+
+    public boolean canWalk() {
+        return walk;
+    }
+
+    public void setCanWalk(boolean walk) {
+        this.walk = walk;
     }
 }

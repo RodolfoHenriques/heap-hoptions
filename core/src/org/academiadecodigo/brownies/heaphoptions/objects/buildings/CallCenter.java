@@ -8,6 +8,9 @@ import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 
 public class CallCenter extends AbstractBuilding {
+
+    private boolean available;
+
     @Override
     public void createImage() {
         texture = new Texture(Gdx.files.internal("rect.png"));
@@ -36,6 +39,11 @@ public class CallCenter extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64,100);
+        batch.draw(texture, getX(), getY(), 64, 100);
+    }
+
+
+    public boolean isAvailable() {
+        return available;
     }
 }
