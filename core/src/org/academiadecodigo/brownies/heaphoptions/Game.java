@@ -27,12 +27,11 @@ import java.util.LinkedList;
 
 public class Game extends ApplicationAdapter {
 
-    enum State {
+    public enum State {
         MENU,
         GAME,
         SYNOPSYS,
-        WIN,
-        LOSE
+        CHOICE
     }
 
     public static final int BG_WIDTH = 2239;
@@ -57,7 +56,7 @@ public class Game extends ApplicationAdapter {
 
     private Music music;
 
-    private State state = State.MENU;
+    private static State state = State.MENU;
 
     private MainMenu mainMenu;
     private Synopsys synopsys;
@@ -116,7 +115,7 @@ public class Game extends ApplicationAdapter {
             return;
         }
 
-        if (state != State.MENU) {
+        if (state == State.GAME) {
             camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
 
             camera.position.x = MathUtils.clamp(camera.position.x, SCREEN_WIDTH / 2f, BG_WIDTH - SCREEN_WIDTH / 2f);
@@ -128,9 +127,10 @@ public class Game extends ApplicationAdapter {
             batch.begin();
             batch.draw(bg, 0, 0);
             drawObjects();
+            verifyInput();
             batch.end();
 
-            verifyInput();
+
             return;
         }
 
@@ -139,9 +139,9 @@ public class Game extends ApplicationAdapter {
 
         batch.begin();
         mainMenu.show();
+        verifyInput();
         batch.end();
 
-        verifyInput();
 
         chooseMenuOption();
 
@@ -175,6 +175,14 @@ public class Game extends ApplicationAdapter {
     }
 
     private void verifyInput() {
+        System.out.println(currentBuilding);
+        for (Keys key : Keys.values()) {
+            if (currentBuilding != null && Gdx.input.isKeyPressed(key.code)) {
+                System.out.println(currentBuilding);
+                currentBuilding.handle(key.code);
+            }
+        }
+
 
         verifyCollision();
 
@@ -198,10 +206,12 @@ public class Game extends ApplicationAdapter {
             if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
                 state = State.MENU;
             }
+
             return;
         }
 
         if (currentBuilding != null && currentBuilding.isOpen()) {
+
             currentBuilding.showStories();
 
             if (currentBuilding instanceof CoffeeShop) {
@@ -241,22 +251,38 @@ public class Game extends ApplicationAdapter {
         for (RectangleMapObject rectangleMapObject : objects.getByType(RectangleMapObject.class)) {
             Rectangle rectangle = rectangleMapObject.getRectangle();
 
-            if(player.getRectangle().overlaps(rectangle)){
-                System.out.println("Bateu");
+            if (player.getRectangle().overlaps(rectangle)) {
+                //System.out.println("Bateu");
             }
 
         }
-
 
         for (AbstractBuilding building : buildings) {
             if (player.getRectangle().overlaps(building.getRectangle())) {
                 if (building.isOpen()) {
                     player.setCanWalk(false);
                     currentBuilding = building;
+                    currentBuilding.setBatch(batch);
+
+                    return;
                 }
             }
         }
-        currentBuilding = null;
+        //currentBuilding = null;
     }
 
+    public static void setState(State s) {
+        state = s;
+    }
+
+    enum Keys {
+        ONE(Input.Keys.NUM_1),
+        TWO(Input.Keys.NUM_2);
+
+        int code;
+
+        Keys(int code) {
+            this.code = code;
+        }
+    }
 }

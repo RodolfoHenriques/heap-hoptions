@@ -19,11 +19,11 @@ public abstract class AbstractBuilding extends AbstractObject implements Buildin
             menu.show();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
-
-        }
 
     }
+
+    // TODO: 2019-08-02
+    public void handle(int key){};
 
     public boolean isOpen() {
         return open;
@@ -37,4 +37,5 @@ public abstract class AbstractBuilding extends AbstractObject implements Buildin
         this.menus = menus;
     }
 
+    
 }
