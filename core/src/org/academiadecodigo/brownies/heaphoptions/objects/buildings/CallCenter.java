@@ -36,6 +36,6 @@ public class CallCenter extends AbstractBuilding {
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), 64,100);
+        batch.draw(texture, getX(), getY(), 64, 100);
     }
 }
