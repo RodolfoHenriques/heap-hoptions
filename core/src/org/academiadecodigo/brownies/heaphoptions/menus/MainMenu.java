@@ -25,4 +25,6 @@ public class MainMenu extends AbstractMenu {
         rectangle.width = Game.SCREEN_WIDTH;
         rectangle.height = Game.SCREEN_HEIGHT;
     }
+
+
 }

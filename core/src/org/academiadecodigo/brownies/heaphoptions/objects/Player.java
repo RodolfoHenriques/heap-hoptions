@@ -10,7 +10,7 @@ import org.academiadecodigo.brownies.heaphoptions.objects.interfaces.Movable;
 
 public class Player extends AbstractObject implements Movable {
 
-    private final float SPEED = 10;
+    private final float SPEED = 7;
     private int influence;
     private boolean walk = true;
 
@@ -19,7 +19,7 @@ public class Player extends AbstractObject implements Movable {
     public void moveUp() {
 
 
-        if (getY() >= Game.BG_WIDTH - rectangle.getHeight()) {
+        if (getY() >= Game.BG_HEIGHT - rectangle.getHeight()) {
             setY(Game.BG_HEIGHT - rectangle.getHeight());
             return;
         }
@@ -59,7 +59,7 @@ public class Player extends AbstractObject implements Movable {
 
 
         if (getX() >= Game.BG_WIDTH - rectangle.getWidth()) {
-            setX(Game.BG_HEIGHT - rectangle.getWidth());
+            setX(Game.BG_WIDTH - rectangle.getWidth());
             return;
         }
 
@@ -80,8 +80,8 @@ public class Player extends AbstractObject implements Movable {
         rectangle = new Rectangle();
         rectangle.x = 205;
         rectangle.y = 140;
-        rectangle.width = 16;
-        rectangle.height = 16;
+        rectangle.width = 46;
+        rectangle.height = 86;
     }
 
     @Override

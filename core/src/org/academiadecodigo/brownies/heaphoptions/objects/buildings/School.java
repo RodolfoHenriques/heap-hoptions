@@ -32,11 +32,6 @@ public class School extends AbstractBuilding {
     @Override
     public void showStories() {
 
-        for (Menu menu : menus) {
-
-            menu.show();
-
-        }
 
         //TODO: ATTENTION HERE
         changeStatesDisco();

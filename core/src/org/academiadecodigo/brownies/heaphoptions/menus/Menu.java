@@ -8,4 +8,6 @@ public interface Menu {
 
     void updatePlayer(int influence);
 
+    void dispose();
+
 }

@@ -34,8 +34,8 @@ public class Game extends ApplicationAdapter {
         CHOICE
     }
 
-    public static final int BG_WIDTH = 2239;
-    public static final int BG_HEIGHT = 2235;
+    public static final int BG_WIDTH = 2064;
+    public static final int BG_HEIGHT = 1152;
     public static final int SCREEN_WIDTH = 1366;
     public static final int SCREEN_HEIGHT = 768;
 
@@ -141,7 +141,6 @@ public class Game extends ApplicationAdapter {
         mainMenu.show();
         verifyInput();
         batch.end();
-
 
         chooseMenuOption();
 
@@ -277,7 +276,8 @@ public class Game extends ApplicationAdapter {
 
     enum Keys {
         ONE(Input.Keys.NUM_1),
-        TWO(Input.Keys.NUM_2);
+        TWO(Input.Keys.NUM_2),
+        THREE(Input.Keys.NUM_3);
 
         int code;
 

@@ -5,7 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import org.academiadecodigo.brownies.heaphoptions.menus.MainMenu;
 import org.academiadecodigo.brownies.heaphoptions.menus.Menu;
+import org.academiadecodigo.brownies.heaphoptions.objects.Player;
 import org.academiadecodigo.brownies.heaphoptions.objects.abstracts.AbstractBuilding;
 import org.academiadecodigo.brownies.heaphoptions.options.CampingMenu;
 import org.academiadecodigo.brownies.heaphoptions.options.DiscoMenu;
@@ -80,20 +82,31 @@ public class Home extends AbstractBuilding {
 
     @Override
     public void handle(int key) {
+
+
         switch (key) {
             case Input.Keys.NUM_1:
                 current = menus.get(CampingMenu.class);
+                System.out.println("1");
                 return;
             case Input.Keys.NUM_2:
                 current = menus.get(DiscoMenu.class);
+                return;
+            case Input.Keys.NUM_3:
+                current = null;
+
+                //Texture texture = new Texture(Gdx.files.internal("background.png"));
+                return;
         }
     }
 
     @Override
     public void draw(Batch batch) {
         batch.draw(texture, getX(), getY(), 31, 20);
+
         if (current != null) {
             current.show();
+
         }
 
     }
@@ -106,5 +119,10 @@ public class Home extends AbstractBuilding {
 
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    @Override
+    public void dispose() {
+        texture.dispose();
     }
 }
