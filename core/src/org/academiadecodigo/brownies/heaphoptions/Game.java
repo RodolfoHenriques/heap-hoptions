@@ -28,6 +28,7 @@ public class Game extends ApplicationAdapter {
     private Player player;
     private OrthographicCamera camera;
     private Texture bg;
+    private ObjectFactory objectFactory = new ObjectFactory();
 
     private LinkedList<AbstractBuilding> buildings;
 
@@ -39,7 +40,7 @@ public class Game extends ApplicationAdapter {
 
         bg = new Texture(Gdx.files.internal("background.png"));
 
-        buildings = ObjectFactory.createBuildings();
+        buildings = objectFactory.createBuildings();
         createObjects();
 
         camera = new OrthographicCamera();
